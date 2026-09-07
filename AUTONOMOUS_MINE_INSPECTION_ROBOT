@@ -1,0 +1,50 @@
+# Autonomous Mine Tunnel Inspection Robot using DFS
+
+# Graph representing the mine tunnels
+mine = {
+    'A': ['G', 'S'],
+    'G': ['C', 'D', 'E'],
+    'C': ['F'],
+    'D': ['F', 'H'],
+    'E': ['Z'],
+    'F': ['K', 'I'],
+    'H': ['M', 'J'],
+    'K': [],
+    'I': ['M'],
+    'J': [],
+    'S': ['X', 'Y'],
+    'X': ['Z'],
+    'Y': ['M', 'Q'],
+    'Q': [],
+    'Z': ['M'],
+    'M': []
+}
+
+visited = set()
+inspection_order = []
+
+
+def dfs(tunnel):
+    visited.add(tunnel)
+    inspection_order.append(tunnel)
+
+    print("★ INSPECTING TUNNEL:", tunnel)
+
+    # Explore connected tunnels one by one
+    for next_tunnel in mine[tunnel]:
+        if next_tunnel not in visited:
+            dfs(next_tunnel)
+
+    # Robot returns after completely exploring this tunnel path
+    print("☆ RETURNING FROM TUNNEL:", tunnel)
+
+
+# Start inspection from tunnel A
+print("ROBOT IS READY FOR INSPECTION...\n")
+
+dfs('A')
+
+print("\n..ROBOT INSPECTION COMPLETED")
+
+print("FULL EXPLORATION PATH:",
+      ' ➡️ '.join(inspection_order))
