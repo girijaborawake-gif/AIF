@@ -1,0 +1,32 @@
+def f(x):
+    return -(x-5)**2+25
+
+def hill_climbing(start):
+    current=start
+
+    while True:
+        #check left and right neighbors
+        left=current-1
+        right=current+1
+
+        #find the best neighbour
+        if f(left)>f(current):
+            next_state = left 
+        elif f(right) > f(current):
+            next_state = right
+        else:
+            #no better neighbour
+            break
+        current=next_state
+
+        return current,f(current)
+
+#starting point
+start=0
+
+#apply hill climbing 
+solution,value =hill_climbing(start)
+        
+print ("staring point:",start)
+print ("best solution:", solution)
+print ("maximum value:", value)
