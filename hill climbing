@@ -1,7 +1,7 @@
 def f(x):
     return-(x-5)**2+25
 
-def hillclimbing(start):
+def hill_climbing(start):
     current=start
 
     while True:
